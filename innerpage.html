@@ -8,6 +8,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
@@ -72,12 +75,36 @@
                 <div id="chart2"></div>
             </div>
 
+            <div class="w-full rounded-xl flex justify-between items-center gap-4">
+                <div
+                    class="h-[80px] rounded-md px-[20px] flex flex-col border-s-[7px] border-[#434960] w-[300px] shadow items-center justify-center cursor-pointer hover:shadow-lg smooth">
+                    <div><span class="text-3xl font-semibold text-[#434960]">22</span><span> of 22</span></div>
+                    <h3 class="text-md font-medium">All Items</h3>
+                </div>
+                <div
+                    class="h-[80px] rounded-md px-[20px] flex flex-col border-s-[7px] border-[#df2a4a] w-[300px] shadow items-center justify-center cursor-pointer hover:shadow-lg smooth">
+                    <div><span class="text-3xl font-semibold text-[#df2a4a]">3</span><span> of 22</span></div>
+                    <h3 class="text-md font-medium">Critical Issues</h3>
+                </div>
+                <div
+                    class="h-[80px] rounded-md px-[20px] flex flex-col border-s-[7px] border-[#005ae0] w-[300px] shadow items-center justify-center cursor-pointer hover:shadow-lg smooth">
+                    <div><span class="text-3xl font-semibold text-[#005ae0]">0</span><span> of 22</span></div>
+                    <h3 class="text-md font-medium">Recommended</h3>
+                </div>
+                <div
+                    class="h-[80px] rounded-md px-[20px] flex flex-col border-s-[7px] border-[#00aa63] w-[300px] shadow items-center justify-center cursor-pointer hover:shadow-lg smooth">
+                    <div><span class="text-3xl font-semibold text-[#00aa63]">19</span><span> of 22</span></div>
+                    <h3 class="text-md font-medium">Good Results</h3>
+                </div>
+            </div>
+
             <div
                 class="cta-168 text-white w-full  border shadow-lg rounded-xl flex flex-col items-start justify-center p-8 gap-5">
                 <h1 class="text-2xl font-bold">Good score, Great potential!</h1>
                 <h1 class="text-xl font-old">Let experts take you further with a personalized SEO strategy!</h1>
                 <div class="input-group">
-                    <input type="email" class="input " id="" name="" placeholder="" value="w3era.com" autocomplete="off">
+                    <input type="email" class="input " id="" name="" placeholder="" value="w3era.com"
+                        autocomplete="off">
                     <input class="hover:scale-105 smooth button--submit " value="Send me a proposal" type="submit">
                 </div>
                 <div>
@@ -85,38 +112,178 @@
                 </div>
             </div>
             <h1 class="text-2xl font-bold text-blue-500">Your Audit Report</h1>
+
+
+
             <aside class="flex gap-4 w-full h-[80vh]">
-                <div id="sidebar" class="sidebar flex-1 bg-[#f5f5f5] border shadow-lg rounded-xl p-4 space-y-2 overflow-y-auto">
-                    <a href="#content" class="block sidebar-item  p-2 rounded">Content</a>
-                    <a href="#indexing" class="block sidebar-item  p-2 rounded">Indexing</a>
-                    <a href="#mobile" class="block sidebar-item  p-2 rounded">Mobile</a>
-                    <a href="#structured-data" class="block sidebar-item  p-2 rounded">Structured Data</a>
-                    <a href="#security" class="block sidebar-item  p-2 rounded">Security</a>
-                    <a href="#performance" class="block sidebar-item  p-2 rounded">Performance</a>
-                    <a href="#technologies" class="block sidebar-item  p-2 rounded">Technologies</a>
-                    <a href="#branding" class="block sidebar-item  p-2 rounded">Branding</a>
-                    <a href="#domain" class="block sidebar-item  p-2 rounded">Domain</a>
-                    <a href="#backlinks" class="block sidebar-item  p-2 rounded">Backlinks</a>
-                    <a href="#traffic" class="block sidebar-item  p-2 rounded">Traffic</a>
-                    <a href="#social-profiles" class="block sidebar-item  p-2 rounded">Social Profiles</a>
-                    <a href="#local" class="block sidebar-item  p-2 rounded">Local</a>
+                <div id="sidebar"
+                    class="sidebar flex-1 bg-[#f5f5f5] border shadow-lg rounded-xl p-4 space-y-2 overflow-y-auto">
+                    <a href="#content" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-file-earmark"></i>
+                        Content</a>
+                    <a href="#indexing" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-file-earmark-binary"></i>
+                        Indexing</a>
+                    <a href="#mobile" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-phone"></i>
+                        Mobile</a>
+                    <a href="#structured-data" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-bar-chart"></i>
+                        Structured Data</a>
+                    <a href="#speed-analytics" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-speedometer2"></i>
+                        Speed Analytics</a>
+                    <a href="#security" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-shield"></i>
+                        Security</a>
+                    <a href="#performance" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-graph-up"></i>
+                        Performance</a>
+                    <a href="#technologies" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-cpu"></i>
+                        Technologies</a>
+                    <a href="#branding" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-meta"></i>
+                        Branding</a>
+                    <a href="#domain" class="block sidebar-item  p-2 rounded">
+                        <i class="fa-solid fa-globe"></i>
+                        Domain</a>
+                    <a href="#backlinks" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-link-45deg"></i>
+                        Backlinks</a>
+                    <a href="#traffic" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-people"></i>
+                        Traffic</a>
+                    <a href="#social-profiles" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-heart"></i>
+                        Social Profiles</a>
+                    <a href="#local" class="block sidebar-item  p-2 rounded">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        Local</a>
                 </div>
-                <div class="main flex-[5] bg-[#f5f5f5] border shadow-lg rounded-xl overflow-y-auto">
-                    <section id="content" class="h-[50vh] p-4 border-b">Content Section</section>
-                    <section id="indexing" class="h-[50vh] p-4 border-b">Indexing Section</section>
-                    <section id="mobile" class="h-[50vh] p-4 border-b">Mobile Section</section>
-                    <section id="structured-data" class="h-[50vh] p-4 border-b">Structured Data Section</section>
-                    <section id="security" class="h-[50vh] p-4 border-b">Security Section</section>
-                    <section id="performance" class="h-[50vh] p-4 border-b">Performance Section</section>
-                    <section id="technologies" class="h-[50vh] p-4 border-b">Technologies Section</section>
-                    <section id="branding" class="h-[50vh] p-4 border-b">Branding Section</section>
-                    <section id="domain" class="h-[50vh] p-4 border-b">Domain Section</section>
-                    <section id="backlinks" class="h-[50vh] p-4 border-b">Backlinks Section</section>
-                    <section id="traffic" class="h-[50vh] p-4 border-b">Traffic Section</section>
-                    <section id="social-profiles" class="h-[50vh] p-4 border-b">Social Profiles Section</section>
-                    <section id="local" class="h-[50vh] p-4 border-b">Local Section</section>
+
+                <div id="loader" class="flex-[5] flex items-center justify-center">
+                    <div class="loader">
+                        <div class="box box-1">
+                            <div class="side-left"></div>
+                            <div class="side-right"></div>
+                            <div class="side-top"></div>
+                        </div>
+                        <div class="box box-2">
+                            <div class="side-left"></div>
+                            <div class="side-right"></div>
+                            <div class="side-top"></div>
+                        </div>
+                        <div class="box box-3">
+                            <div class="side-left"></div>
+                            <div class="side-right"></div>
+                            <div class="side-top"></div>
+                        </div>
+                        <div class="box box-4">
+                            <div class="side-left"></div>
+                            <div class="side-right"></div>
+                            <div class="side-top"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main flex-[5] bg-[#f5f5f5] border shadow-lg rounded-xl overflow-y-auto hidden"
+                    id="main-content">
+                    <!-- content -->
+                    <section id="content" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Content Section </h3>
+                        <hr />
+                        <div id="title"></div>
+                        <div id="meta-description"></div>
+                        <div id="word-count"></div>
+                    </section>
+
+                    <section id="indexing" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Indexing Section </h3>
+                        <hr />
+                        <div id="canonical-tag"></div>
+                        <div id="noindex-tag"></div>
+                        <div id="robots-txt"></div>
+                        <div id="xml-sitemap"></div>
+                    </section>
+
+                    <section id="mobile" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Mobile Section </h3>
+                        <hr />
+                        <!-- Add any relevant mobile SEO data here -->
+                    </section>
+
+                    <section id="structured-data" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Structured Data Section </h3>
+                        <hr />
+                        <div id="schema-message"></div>
+                    </section>
+
+                    <section id="speed-analytics" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Speed Analytics</h3>
+                        <hr />
+                        
+                        <div id="speedAnalytics"></div>
+                    </section>
+
+                    <section id="security" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Security Section </h3>
+                        <hr />
+                        <div id="ssl-enabled"></div>
+                        <div id="https-redirect"></div>
+                    </section>
+
+                    <section id="performance" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Performance Section </h3>
+                        <hr />
+                        <div id="header-tags-frequency"></div>
+                        <div id="images-without-alt"></div>
+                    </section>
+
+                    <section id="technologies" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Technologies Section </h3>
+                        <hr />
+                        <!-- Add any relevant technology data here -->
+                    </section>
+
+                    <section id="branding" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Branding Section </h3>
+                        <hr />
+                        <!-- Add any relevant branding data here -->
+                    </section>
+
+                    <section id="domain" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Domain Section </h3>
+                        <hr />
+                        <!-- Add any relevant domain data here -->
+                    </section>
+
+                    <section id="backlinks" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Backlinks Section </h3>
+                        <hr />
+                        <!-- Add any relevant backlinks data here -->
+                    </section>
+
+                    <section id="traffic" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Traffic Section </h3>
+                        <hr />
+                        <!-- Add any relevant traffic data here -->
+                    </section>
+
+                    <section id="social-profiles" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Social Profiles Section </h3>
+                        <hr />
+                        <!-- Add any relevant social profiles data here -->
+                    </section>
+
+                    <section id="local" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-xl font-semibold text-center mb-3">Local Section </h3>
+                        <hr />
+                        <!-- Add any relevant local data here -->
+                    </section>
                 </div>
             </aside>
+
 
         </div>
     </main>
@@ -164,8 +331,8 @@
             </aside>
         </footer>
     </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
 
     <script src="./script.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -327,6 +494,7 @@
 
 
     </script>
+
 </body>
 
 </html>
