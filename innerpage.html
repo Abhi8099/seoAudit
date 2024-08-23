@@ -68,9 +68,9 @@
             <div class="w-full shadow-xl rounded-xl flex justify-around items-center">
                 <div id="chart"></div>
                 <div class="flex flex-col py-2">
-                    <img src="./image/w3era.com.desktop.png" alt="" class="" data-aos="zoom-in">
-                    <h1 class="text-2xl font-bold">W3ERA.COM</h1>
-                    <h1>August 16, 2024 05:50:54</h1>
+                    <img id="website_screenshot" alt="" class="" data-aos="zoom-in">
+                    <h1 class="text-xl font-[500]" id="top_title"></h1>
+                    <h1 id="today_date_time"></h1>
                 </div>
                 <div id="chart2"></div>
             </div>
@@ -121,6 +121,9 @@
                     <a href="#content" class="block sidebar-item  p-2 rounded">
                         <i class="bi bi-file-earmark"></i>
                         Content</a>
+                    <a href="#keyword" class="block sidebar-item  p-2 rounded">
+                        <i class="bi bi-alphabet-uppercase"></i>
+                        Keywords</a>
                     <a href="#indexing" class="block sidebar-item  p-2 rounded">
                         <i class="bi bi-file-earmark-binary"></i>
                         Indexing</a>
@@ -190,94 +193,179 @@
                 <div class="main flex-[5] bg-[#f5f5f5] border shadow-lg rounded-xl overflow-y-auto hidden"
                     id="main-content">
                     <!-- content -->
-                    <section id="content" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Content Section </h3>
+                    <section id="content" class=" p-4 border-b">
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Content </h3>
                         <hr />
-                        <div id="title"></div>
-                        <div id="meta-description"></div>
-                        <div id="word-count"></div>
+                        <div id="title" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Title Tag Tips:</h3>
+                            <p>- Limit title tags to 55 characters</p>
+                            <p>- Place your core keyword at the start of your title tag, if possible</p>
+                            <p>- Make title tags transparent, but also enticing for your audience</p>
+                        </div>
+                        <div id="meta-description" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Meta Description Tips:</h3>
+                            <p>- Limit meta descriptions to 155 characters</p>
+                            <p>- Include your core keyword and related keywords, if possible</p>
+                            <p>- Use meta descriptions to summarize your page</p>
+                        </div>
+                        <div id="header-tags-frequency" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Heading Tips:</h3>
+                            <p>- Write informative, easy-to-follow heading tags</p>
+                            <p>- Use heading tags, like H1s, H2s, and H3s, to organize content</p>
+                            <p>- Feature core or related keywords in heading tags</p>
+                        </div>
+                        <div id="images-without-alt" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Alt Attribute Tips:</h3>
+                            <p>- Add image alt text for all images </p>
+                            <p>- Describe an image exactly as it appears, like “dog at beach”</p>
+                            <p>- Include core or related keywords, like for product images</p>
+                        </div>
                     </section>
 
-                    <section id="indexing" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Indexing Section </h3>
-                        <hr />
-                        <div id="canonical-tag"></div>
-                        <div id="noindex-tag"></div>
-                        <div id="robots-txt"></div>
-                        <div id="xml-sitemap"></div>
-                    </section>
+                    <section id="keywords" class=" p-4 border-b">
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Keywords </h3>
+                        <div id="keyword-consistency-table"></div>
 
-                    <section id="mobile" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Mobile Section </h3>
                         <hr />
                         <!-- Add any relevant mobile SEO data here -->
                     </section>
 
-                    <section id="structured-data" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Structured Data Section </h3>
+                    <section id="indexing" class=" p-4 border-b">
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Indexing </h3>
                         <hr />
-                        <div id="schema-message"></div>
+                        <div id="canonical-tag" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Canonical Tag Tips:</h3>
+                            <p>- Use a self-referencing canonical tag on every page to prevent duplicate content issues.
+                            </p>
+                            <p>- Ensure the canonical tag points to the most authoritative version of the page.</p>
+                            <p>- Avoid using canonical tags across different domains to prevent ranking issues.</p>
+
+                        </div>
+                        <div id="noindex-tag" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Noindex Tag Tips:</h3>
+                            <p>- Use the noindex tag for pages with thin or duplicate content to avoid search engine
+                                penalties.</p>
+                            <p>- Apply the noindex tag to admin pages or other non-essential content that shouldn't
+                                appear in search results.</p>
+                            <p>- Ensure that important pages aren't accidentally tagged with noindex to avoid ranking
+                                issues.</p>
+                        </div>
+                        <div id="robots-txt" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Robots.txt Tips:</h3>
+                            <p>- Disallow crawling of sensitive directories, like /admin/ or /private/, to protect
+                                confidential content.</p>
+                            <p>- Use the robots.txt file to block search engines from indexing unnecessary scripts and
+                                stylesheets.</p>
+                            <p>- Regularly audit your robots.txt file to ensure it's up-to-date with your site's
+                                structure.</p>
+                        </div>
+                        <div id="xml-sitemap" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's XML Sitemap Tips:</h3>
+                            <p>- Include only canonical URLs in your XML sitemap to ensure search engines index the
+                                correct pages.</p>
+                            <p>- Update your XML sitemap whenever new content is added to the site to keep search
+                                engines informed.</p>
+                            <p>- Submit your XML sitemap to Google Search Console and Bing Webmaster Tools for better
+                                indexing.</p>
+                        </div>
+                    </section>
+
+                    <section id="mobile" class="h-[70vh] p-4 border-b">
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Mobile </h3>
+                        <hr />
+                        <!-- Add any relevant mobile SEO data here -->
+                    </section>
+
+                    <section id="structured-data" class=" p-4 border-b">
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Structured Data </h3>
+                        <hr />
+                        <div id="schema-message" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Schema.org Tips:</h3>
+                            <p>- Generate structured data for existing pages with Google’s Structured Data Markup Helper tool</p>
+                            <p>- Format structured data as JSON-LD versus microdata</p>
+                            <p>- Check structured data for errors with Google’s Structured Testing Tool</p>
+                        </div>
                     </section>
 
                     <section id="speed-analytics" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Speed Analytics</h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Speed Analytics</h3>
                         <hr />
-                        
+
                         <div id="speedAnalytics"></div>
                     </section>
 
                     <section id="security" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Security Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Security </h3>
                         <hr />
-                        <div id="ssl-enabled"></div>
-                        <div id="https-redirect"></div>
+                        <div id="ssl-enabled" class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's SSL Tips Tips:</h3>
+                            <p>- Set a reminder to renew your SSL certificate each year</p>
+                            <p>- Redirect your HTTP pages to HTTPS after purchasing your SSL certificate</p>
+                            <p>- Update your XML sitemap and robots.txt file after installing your SSL certificate</p>
+                        </div>
+                        <div id="https-redirect"class="flex"></div>
+                        <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
+                            <h3 class="text-md font-[700]">SEO Audit's Https Redirect Tips:</h3>
+                            <p>- Ensure all HTTP URLs are redirected to HTTPS to avoid mixed content warnings.</p>
+                            <p>- Use 301 redirects for permanent redirection from HTTP to HTTPS.</p>
+                            <p>- Update internal links to use HTTPS to prevent unnecessary redirects.</p>
+                        </div>
                     </section>
 
                     <section id="performance" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Performance Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Performance </h3>
                         <hr />
-                        <div id="header-tags-frequency"></div>
-                        <div id="images-without-alt"></div>
+
                     </section>
 
                     <section id="technologies" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Technologies Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Technologies </h3>
                         <hr />
                         <!-- Add any relevant technology data here -->
                     </section>
 
                     <section id="branding" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Branding Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Branding </h3>
                         <hr />
                         <!-- Add any relevant branding data here -->
                     </section>
 
                     <section id="domain" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Domain Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Domain </h3>
                         <hr />
                         <!-- Add any relevant domain data here -->
                     </section>
 
                     <section id="backlinks" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Backlinks Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Backlinks </h3>
                         <hr />
                         <!-- Add any relevant backlinks data here -->
                     </section>
 
                     <section id="traffic" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Traffic Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Traffic </h3>
                         <hr />
                         <!-- Add any relevant traffic data here -->
                     </section>
 
                     <section id="social-profiles" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Social Profiles Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Social Profiles </h3>
                         <hr />
                         <!-- Add any relevant social profiles data here -->
                     </section>
 
                     <section id="local" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-xl font-semibold text-center mb-3">Local Section </h3>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Local </h3>
                         <hr />
                         <!-- Add any relevant local data here -->
                     </section>
@@ -494,6 +582,9 @@
 
 
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
 
 </body>
 
