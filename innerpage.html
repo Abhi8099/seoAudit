@@ -103,9 +103,9 @@
                 <h1 class="text-2xl font-bold">Good score, Great potential!</h1>
                 <h1 class="text-xl font-old">Let experts take you further with a personalized SEO strategy!</h1>
                 <div class="input-group">
-                    <input type="email" class="input " id="" name="" placeholder="" value="w3era.com"
+                    <input type="email" class="input" id="proposal_input" name="" placeholder="" value=""
                         autocomplete="off">
-                    <input class="hover:scale-105 smooth button--submit " value="Send me a proposal" type="submit">
+                    <input class="active:scale-95 smooth button--submit " value="Send me a proposal" type="submit">
                 </div>
                 <div>
 
@@ -139,30 +139,6 @@
                     <a href="#security" class="block sidebar-item  p-2 rounded">
                         <i class="bi bi-shield"></i>
                         Security</a>
-                    <a href="#performance" class="block sidebar-item  p-2 rounded">
-                        <i class="bi bi-graph-up"></i>
-                        Performance</a>
-                    <a href="#technologies" class="block sidebar-item  p-2 rounded">
-                        <i class="bi bi-cpu"></i>
-                        Technologies</a>
-                    <a href="#branding" class="block sidebar-item  p-2 rounded">
-                        <i class="bi bi-meta"></i>
-                        Branding</a>
-                    <a href="#domain" class="block sidebar-item  p-2 rounded">
-                        <i class="fa-solid fa-globe"></i>
-                        Domain</a>
-                    <a href="#backlinks" class="block sidebar-item  p-2 rounded">
-                        <i class="bi bi-link-45deg"></i>
-                        Backlinks</a>
-                    <a href="#traffic" class="block sidebar-item  p-2 rounded">
-                        <i class="bi bi-people"></i>
-                        Traffic</a>
-                    <a href="#social-profiles" class="block sidebar-item  p-2 rounded">
-                        <i class="bi bi-heart"></i>
-                        Social Profiles</a>
-                    <a href="#local" class="block sidebar-item  p-2 rounded">
-                        <i class="fa-solid fa-boxes-stacked"></i>
-                        Local</a>
                 </div>
 
                 <div id="loader" class="flex-[5] flex items-center justify-center">
@@ -226,9 +202,11 @@
                         </div>
                     </section>
 
-                    <section id="keywords" class=" p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Keywords </h3>
+                    <section id="keyword" class=" p-4 border-b">
+                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Individual Keywords </h3>
                         <div id="keyword-consistency-table"></div>
+                        <h3 class="text-2xl font-bold text-blue-500 text-center my-3">Phrases</h3>
+                        <div id="phrases-table"></div>
 
                         <hr />
                         <!-- Add any relevant mobile SEO data here -->
@@ -284,26 +262,63 @@
                         <!-- Add any relevant mobile SEO data here -->
                     </section>
 
-                    <section id="structured-data" class=" p-4 border-b">
+                    <section id="structured-data" class="h-[70vh] p-4 border-b">
                         <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Structured Data </h3>
                         <hr />
                         <div id="schema-message" class="flex"></div>
                         <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
                             <h3 class="text-md font-[700]">SEO Audit's Schema.org Tips:</h3>
-                            <p>- Generate structured data for existing pages with Google’s Structured Data Markup Helper tool</p>
+                            <p>- Generate structured data for existing pages with Google’s Structured Data Markup Helper
+                                tool</p>
                             <p>- Format structured data as JSON-LD versus microdata</p>
                             <p>- Check structured data for errors with Google’s Structured Testing Tool</p>
                         </div>
                     </section>
 
-                    <section id="speed-analytics" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Speed Analytics</h3>
-                        <hr />
+<!-- speed-analytics -->
+<section id="speed-analytics" class="p-4 border-b">
+    <div class="tabs">
+        <button id="desktop-tab" class="tab-button active">Desktop</button>
+        <button id="mobile-tab" class="tab-button">Mobile</button>
+    </div>
+    <div id="tab-content" class="tab-content">
+        <div id="desktop-content" class="tab-pane active">
+            <!-- Desktop content -->
+            <div class="flex flex-col gap-2">
+                <h3 class="text-2xl font-bold text-blue-500 text-center my-3">Speed Analytics</h3>
+                <hr />
+                <div id="Scores" class="flex h-44 justify-center items-center gap-4"></div>
+                <div id="ScoresDiv" class="flex h-5 justify-center items-center gap-[180px] turncate"></div>
+            </div>
 
-                        <div id="speedAnalytics"></div>
-                    </section>
+            <h3 class="text-2xl font-bold text-blue-500 text-center my-3">Core Web Vitals</h3>
+            <hr />
+            <div id="coreWebVitals" class="space-y-4 mt-4"></div>
 
-                    <section id="security" class="h-[70vh] p-4 border-b">
+            <h3 class="text-2xl font-bold text-blue-500 text-center my-3">Performance Metrics</h3>
+            <hr />
+            <div id="performanceMetrics" class="space-y-4 mt-4"></div>
+        </div>
+
+        <div id="mobileContent" class="tab-pane">
+            <!-- Mobile content -->
+            <div class="flex flex-col gap-2">
+                <div id="Scores" class="flex h-44 justify-center items-center gap-4"></div>
+                <div id="ScoresDiv" class="flex h-5 justify-center items-center gap-[180px] turncate"></div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-blue-500 text-center my-3">Core Web Vitals</h3>
+            <hr />
+            <div id="coreWebVitals" class="space-y-4 mt-4"></div>
+
+            <h3 class="text-2xl font-bold text-blue-500 text-center my-3">Performance Metrics</h3>
+            <hr />
+            <div id="performanceMetrics" class="space-y-4 mt-4"></div>
+        </div>
+    </div>
+</section>
+
+                    <section id="security" class=" p-4 border-b">
                         <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Security </h3>
                         <hr />
                         <div id="ssl-enabled" class="flex"></div>
@@ -313,61 +328,13 @@
                             <p>- Redirect your HTTP pages to HTTPS after purchasing your SSL certificate</p>
                             <p>- Update your XML sitemap and robots.txt file after installing your SSL certificate</p>
                         </div>
-                        <div id="https-redirect"class="flex"></div>
+                        <div id="https-redirect" class="flex"></div>
                         <div class="flex flex-col gap-2 bg-white rounded-lg py-4 items-center">
                             <h3 class="text-md font-[700]">SEO Audit's Https Redirect Tips:</h3>
                             <p>- Ensure all HTTP URLs are redirected to HTTPS to avoid mixed content warnings.</p>
                             <p>- Use 301 redirects for permanent redirection from HTTP to HTTPS.</p>
                             <p>- Update internal links to use HTTPS to prevent unnecessary redirects.</p>
                         </div>
-                    </section>
-
-                    <section id="performance" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Performance </h3>
-                        <hr />
-
-                    </section>
-
-                    <section id="technologies" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Technologies </h3>
-                        <hr />
-                        <!-- Add any relevant technology data here -->
-                    </section>
-
-                    <section id="branding" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Branding </h3>
-                        <hr />
-                        <!-- Add any relevant branding data here -->
-                    </section>
-
-                    <section id="domain" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Domain </h3>
-                        <hr />
-                        <!-- Add any relevant domain data here -->
-                    </section>
-
-                    <section id="backlinks" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Backlinks </h3>
-                        <hr />
-                        <!-- Add any relevant backlinks data here -->
-                    </section>
-
-                    <section id="traffic" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Traffic </h3>
-                        <hr />
-                        <!-- Add any relevant traffic data here -->
-                    </section>
-
-                    <section id="social-profiles" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Social Profiles </h3>
-                        <hr />
-                        <!-- Add any relevant social profiles data here -->
-                    </section>
-
-                    <section id="local" class="h-[70vh] p-4 border-b">
-                        <h3 class="text-2xl font-bold text-blue-500 text-center mb-3">Local </h3>
-                        <hr />
-                        <!-- Add any relevant local data here -->
                     </section>
                 </div>
             </aside>
@@ -447,7 +414,11 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+
+
     <script>
+        
         var options = {
             series: [75],
             chart: {
@@ -584,7 +555,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    
+
 
 </body>
 

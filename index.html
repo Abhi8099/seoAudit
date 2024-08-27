@@ -92,20 +92,17 @@
                                         </path>
                                     </g>
                                 </svg>
-                                <input id="websiteInput" placeholder="Example.com" type="search" class="input_main" oninput="validateURL()">
+                                <input id="websiteInput" placeholder="Example.com" type="search" class="input_main" oninput="validateURL()"/>
                             </div>
                             <div class="modal-action">
                                 <form method="dialog" onsubmit="handleSubmit(event)">
-                                    <button
-                                        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-black">✕</button>
-
                                         <button id="nextButton" 
                                         class="btn modalbtn bg-purplish hover:bg-[#F08321] hover:text-white disabled:cursor-not-allowed" 
                                         disabled>
                                     Next
                                 </button>
-                                
                                 </form>
+                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-black" onclick="document.querySelector('dialog').close()">✕</button>
                             </div>
                         </div>
                     </dialog>
