@@ -74,6 +74,8 @@ window.onload = function () {
     })
       .then(response => response.json())
       .then(seoData => {
+        console.log("seocheck",seoData);
+        
         loader.style.display = 'none';
         mainContent.classList.remove('hidden');
         console.log(seoData);
@@ -377,218 +379,281 @@ HTTPS Redirect Message:
 
 
         // Second fetch for Page Speed
-        const speedApi = "http://172.16.16.11:8012/page-speed/";
-        return fetch(speedApi, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(requestBody)
-        });
       })
-      .then(response => response.json())
-      .then(response => {
-        console.log(response);
-        const getQualityLabel = (value, thresholds) => {
-          if (value <= thresholds.good) return 'Good';
-          if (value <= thresholds.needsImprovement) return 'Needs Improvement';
-          return 'Poor';
-        };
 
-        const metrics = {
-          fcp: {
-            label: 'First Contentful Paint (FCP)',
-            value: parseFloat(response.core_web_vitals.fcp),
-            thresholds: { good: 1.8, needsImprovement: 3.0 },
-            unit: 's',
-            Good: "(≤ 1.8 s)",
-            Needs_Improvement: "(1.8 s - 3 s)",
-            Poor: "(> 3 s)"
-          },
-          lcp: {
-            label: 'Largest Contentful Paint (LCP)',
-            value: parseFloat(response.core_web_vitals.lcp),
-            thresholds: { good: 2.5, needsImprovement: 4.0 },
-            unit: 's',
-            Good: "(≤ 2.5 s)",
-            Needs_Improvement: "(2.5 s - 4 s)",
-            Poor: "(> 4 s)"
-          },
-          cls: {
-            label: 'Cumulative Layout Shift (CLS)',
-            value: parseFloat(response.core_web_vitals.cls),
-            thresholds: { good: 0.1, needsImprovement: 0.25 },
-            Good: "(≤ 0.1 s)",
-            Needs_Improvement: "(0.1 s - 0.25)",
-            Poor: "(> 0.25)"
-          },
-          inp: {
-            label: 'First Input Delay (FID)',
-            value: parseFloat(response.core_web_vitals.fid),
-            thresholds: { good: 0.1, needsImprovement: 0.3 },
-            unit: 's',
-            Good: "(≤ 100 ms)",
-            Needs_Improvement: "(100 ms - 300 ms)",
-            Poor: "(> 300 ms)"
-          },
-        };
-
-        let output = '';
-        Object.keys(metrics).forEach(key => {
-          const metric = metrics[key];
-          const quality = getQualityLabel(metric.value, metric.thresholds);
-          const color = quality === 'Good' ? 'text-green-500' : (quality === 'Needs Improvement' ? 'text-yellow-500' : 'text-red-500');
-          output += `
-        <div class='flex bg-white p-4 rounded shadow-md'>
-          <div class="flex-1">
-            <h4 class="text-lg font-semibold mb-2 text-blue-600">${metric.label}</h4>
-            <p class="text-2xl ${color}">${metric.value}${metric.unit || ''}</p>
-            <p class="${color}">${quality}</p>
-          </div>
-          <div class="flex-1">
-            <h4 class="text-sm mb-2 text-green-500">Good ${metric.Good}</h4>
-            <h4 class="text-sm mb-2 text-yellow-500">Needs Improvement ${metric.Needs_Improvement}</h4>
-            <h4 class="text-sm mb-2 text-red-500">Poor ${metric.Poor}</h4>
-          </div>
-        </div>
-          `;
-        });
-
-
-        document.getElementById('coreWebVitals').innerHTML = output;
-
-        const ctxPerformance = document.createElement('canvas');
-        const ctxAccessibility = document.createElement('canvas');
-        const ctxBestPractices = document.createElement('canvas');
-        const ctxSEO = document.createElement('canvas');
-
-        const performanceScoreDiv = document.createElement('div');
-        const accessibilityScoreDiv = document.createElement('div');
-        const bestPracticesScoreDiv = document.createElement('div');
-        const seoScoreDiv = document.createElement('div');
-
-        // Style score divs (optional, for better visual presentation)
-        const scoreStyle = 'text-align: center; font-size: 16px; font-weight: bold; margin-top: 10px;';
-
-        performanceScoreDiv.style = scoreStyle;
-        accessibilityScoreDiv.style = scoreStyle;
-        bestPracticesScoreDiv.style = scoreStyle;
-        seoScoreDiv.style = scoreStyle;
-
-        document.getElementById('Scores').appendChild(ctxPerformance);
-        document.getElementById('ScoresDiv').appendChild(performanceScoreDiv); // Append score div
-
-        document.getElementById('Scores').appendChild(ctxAccessibility);
-        document.getElementById('ScoresDiv').appendChild(accessibilityScoreDiv); // Append score div
-
-        document.getElementById('Scores').appendChild(ctxBestPractices);
-        document.getElementById('ScoresDiv').appendChild(bestPracticesScoreDiv); // Append score div
-
-        document.getElementById('Scores').appendChild(ctxSEO);
-        document.getElementById('ScoresDiv').appendChild(seoScoreDiv);
-
-        const createDonutChart = (ctx, label, value, color, scoreDiv) => {
-          new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-              labels: [label],
-              datasets: [{
-                data: [value, 100 - value],
-                backgroundColor: [color, '#e0e0e0'],
-                borderWidth: 0
-              }]
-            },
-            options: {
-              responsive: true,
-              cutout: '70%',
-              plugins: {
-                legend: {
-                  display: true,
-                  position: 'bottom',
-                  labels: {
-                    font: {
-                      size: 14
-                    }
-                  }
-                },
-                tooltip: {
-                  callbacks: {
-                    label: (tooltipItem) => {
-                      return `${tooltipItem.label}: ${tooltipItem.raw}`;
-                    }
-                  }
-                }
-              },
-              elements: {
-                arc: { borderWidth: 0 }
-              }
-            }
-          });
-          scoreDiv.textContent = `${value}`;
-        };
-
-        createDonutChart(ctxPerformance, 'Performance Score', response.performance_score, '#4CAF50', performanceScoreDiv);
-        createDonutChart(ctxAccessibility, 'Accessibility Score', response.accessibility_score, '#2196F3', accessibilityScoreDiv);
-        createDonutChart(ctxBestPractices, 'Best Practices Score', response.best_practices_score, '#FFC107', bestPracticesScoreDiv);
-        createDonutChart(ctxSEO, 'SEO Score', response.seo_score, '#F44336', seoScoreDiv);
-
-        // Performance Metrics
-        const met_rics = response.performance_metrics;
-        document.getElementById('performanceMetrics').innerHTML = `
-        <div class='flex bg-white p-4 rounded shadow-md '>
-                    <div class="flex-1">
-                <h4 class="text-lg font-semibold mb-2 text-blue-600">First Contentful Paint</h4>
-                <p>${met_rics.first_contentful_paint}</p>
-            </div>
-                    <div class="flex-1 items-center text-sm  flex">
-                <p>First Contentful Paint marks the time at which the first text or image is painted. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/?utm_source=lighthouse&utm_medium=lr'>Learn more about the First Contentful Paint metric.</a></p>
-            </div>
-        </div>
-                <div class='flex bg-white p-4 rounded shadow-md '>
-                    <div class="flex-1">
-                <h4 class="text-lg font-semibold mb-2 text-blue-600">Largest Contentful Paint</h4>
-                <p>${met_rics.largest_contentful_paint}</p>
-            </div>
-                    <div class="flex-1 items-center text-sm  flex">
-                <p>Largest Contentful Paint marks the time at which the largest text or image is painted. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/?utm_source=lighthouse&utm_medium=lr'>Learn more about the Largest Contentful Paint metric.</a></p>
-            </div>
-        </div>
-        <div class='flex bg-white p-4 rounded shadow-md '>
-                    <div class="flex-1">
-                <h4 class="text-lg font-semibold mb-2 text-blue-600">Cumulative Layout Shift</h4>
-                <p>${met_rics.cumulative_layout_shift}</p>
-            </div>
-                    <div class="flex-1 items-center text-sm  flex">
-                <p>Cumulative Layout Shift measures the movement of visible elements within the viewport. <a class='text-blue-500' target=_blank href='https://web.dev/articles/cls?utm_source=lighthouse&utm_medium=lr'>Learn more about the Cumulative Layout Shift metric.</a></p>
-            </div>
-        </div>
-        <div class='flex bg-white p-4 rounded shadow-md '>
-                    <div class="flex-1">
-                <h4 class="text-lg font-semibold mb-2 text-blue-600">Speed Index</h4>
-                <p>${met_rics.speed_index}</p>
-            </div>
-                    <div class="flex-1 items-center text-sm  flex">
-                <p>Speed Index shows how quickly the contents of a page are visibly populated. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/speed-index/?utm_source=lighthouse&utm_medium=lr'>Learn more about the Speed Index metric.</a></p>
-            </div>
-        </div>
-
-        <div class='flex bg-white p-4 rounded shadow-md '>
-                    <div class="flex-1">
-                <h4 class="text-lg font-semibold mb-2 text-blue-600">Total Blocking Time</h4>
-                <p>${met_rics.total_blocking_time}</p>
-            </div>
-                    <div class="flex-1 items-center text-sm  flex">
-                <p>Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/?utm_source=lighthouse&utm_medium=lr'>Learn more about the Total Blocking Time metric.</a></p>
-            </div>
-        </div>
-
-
-        `;
+      fetch('http://172.16.16.11:8012/api/keyworddensity/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
       })
-      .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(seoData =>{
+          console.log("keyworddensity",seoData);
+          
+        })
+      // fetch('http://172.16.16.11:8012/api/domaincheck/', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(requestBody)
+      // })
+      //   .then(response => response.json())
+      //   .then(seoData =>{
+      //     console.log("domian",seoData);
+          
+      //   })
+
 
   } else {
     console.error('No URL provided');
   }
+
+
+
 }
+
+
+  const params = new URLSearchParams(window.location.search);
+  const website_URL = params.get('url');
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    const desktopTab = document.getElementById('desktop-tab');
+    const mobileTab = document.getElementById('mobile-tab');
+    const desktopContent = document.getElementById('desktop-content');
+    const mobileContent = document.getElementById('mobileContent');
+    const loader = document.getElementById('loader2');
+
+    // Function to clear existing content
+    const clearContent = (container) => {
+        container.innerHTML = '';
+    };
+
+    // Function to load analytics data
+    const loadAnalytics = (strategy) => {
+        loader.style.display = 'flex';  // Show loader
+
+        const speedApi = "http://172.16.16.11:8012/page-speed/";
+        const requestBody = {
+            url: website_URL, // Replace with your URL
+            strategy: strategy
+        };
+
+        return fetch(speedApi, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(response => {
+            loader.style.display = 'none';
+console.log(response);
+
+            // Clear existing content
+            const currentTab = strategy === 'mobile' ? mobileContent : desktopContent;
+            clearContent(currentTab.querySelector('#coreWebVitals'));
+            clearContent(currentTab.querySelector('#Scores'));
+            clearContent(currentTab.querySelector('#ScoresDiv'));
+            clearContent(currentTab.querySelector('#performanceMetrics'));
+
+            const getQualityLabel = (value, thresholds) => {
+                if (value <= thresholds.good) return 'Good';
+                if (value <= thresholds.needsImprovement) return 'Needs Improvement';
+                return 'Poor';
+            };
+
+            const metrics = {
+                fcp: {
+                    label: 'First Contentful Paint (FCP)',
+                    value: parseFloat(response.core_web_vitals.fcp),
+                    thresholds: { good: 1.8, needsImprovement: 3.0 },
+                    unit: 's',
+                    Good: "(≤ 1.8 s)",
+                    Needs_Improvement: "(1.8 s - 3 s)",
+                    Poor: "(> 3 s)"
+                },
+                lcp: {
+                    label: 'Largest Contentful Paint (LCP)',
+                    value: parseFloat(response.core_web_vitals.lcp),
+                    thresholds: { good: 2.5, needsImprovement: 4.0 },
+                    unit: 's',
+                    Good: "(≤ 2.5 s)",
+                    Needs_Improvement: "(2.5 s - 4 s)",
+                    Poor: "(> 4 s)"
+                },
+                cls: {
+                    label: 'Cumulative Layout Shift (CLS)',
+                    value: parseFloat(response.core_web_vitals.cls),
+                    thresholds: { good: 0.1, needsImprovement: 0.25 },
+                    Good: "(≤ 0.1 s)",
+                    Needs_Improvement: "(0.1 s - 0.25)",
+                    Poor: "(> 0.25)"
+                },
+                inp: {
+                    label: 'First Input Delay (FID)',
+                    value: parseFloat(response.core_web_vitals.fid),
+                    thresholds: { good: 0.1, needsImprovement: 0.3 },
+                    unit: 's',
+                    Good: "(≤ 100 ms)",
+                    Needs_Improvement: "(100 ms - 300 ms)",
+                    Poor: "(> 300 ms)"
+                },
+            };
+
+            let output = '';
+            Object.keys(metrics).forEach(key => {
+                const metric = metrics[key];
+                const quality = getQualityLabel(metric.value, metric.thresholds);
+                const color = quality === 'Good' ? 'text-green-500' : (quality === 'Needs Improvement' ? 'text-yellow-500' : 'text-red-500');
+                output += `
+                <div class='flex bg-white p-4 rounded shadow-md'>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold mb-2 text-blue-600">${metric.label}</h4>
+                        <p class="text-2xl ${color}">${metric.value}${metric.unit || ''}</p>
+                        <p class="${color}">${quality}</p>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-sm mb-2 text-green-500">Good ${metric.Good}</h4>
+                        <h4 class="text-sm mb-2 text-yellow-500">Needs Improvement ${metric.Needs_Improvement}</h4>
+                        <h4 class="text-sm mb-2 text-red-500">Poor ${metric.Poor}</h4>
+                    </div>
+                </div>
+                `;
+            });
+
+            currentTab.querySelector('#coreWebVitals').innerHTML = output;
+
+            // Render the donut charts
+            const createDonutChart = (ctx, label, value, color, scoreDiv) => {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [label],
+                        datasets: [{
+                            data: [value, 100 - value],
+                            backgroundColor: [color, '#e0e0e0'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        cutout: '70%',
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (tooltipItem) => {
+                                        return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                                    }
+                                }
+                            }
+                        },
+                        elements: {
+                            arc: { borderWidth: 0 }
+                        }
+                    }
+                });
+                scoreDiv.textContent = `${value}`;
+            };
+
+            const donutCharts = [
+                { ctx: document.createElement('canvas'), label: 'Performance Score', value: response.performance_score, color: '#4CAF50' },
+                { ctx: document.createElement('canvas'), label: 'Accessibility Score', value: response.accessibility_score, color: '#2196F3' },
+                { ctx: document.createElement('canvas'), label: 'Best Practices Score', value: response.best_practices_score, color: '#FFC107' },
+                { ctx: document.createElement('canvas'), label: 'SEO Score', value: response.seo_score, color: '#F44336' }
+            ];
+
+            donutCharts.forEach((chart, index) => {
+                const scoreDiv = document.createElement('div');
+                scoreDiv.style.textAlign = 'center';
+                scoreDiv.style.fontSize = '16px';
+                scoreDiv.style.fontWeight = 'bold';
+                scoreDiv.style.marginTop = '10px';
+                const scoresDiv = currentTab.querySelector('#Scores');
+                const scoresDivContainer = currentTab.querySelector('#ScoresDiv');
+
+                scoresDiv.appendChild(chart.ctx);
+                scoresDivContainer.appendChild(scoreDiv);
+
+                createDonutChart(chart.ctx, chart.label, chart.value, chart.color, scoreDiv);
+            });
+
+            // Performance Metrics
+            const met_rics = response.performance_metrics;
+            currentTab.querySelector('#performanceMetrics').innerHTML = `
+                <div class='flex bg-white p-4 rounded shadow-md '>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold mb-2 text-blue-600">First Contentful Paint</h4>
+                        <p>${met_rics.first_contentful_paint}</p>
+                    </div>
+                    <div class="flex-1 items-center text-sm  flex">
+                        <p>First Contentful Paint marks the time at which the first text or image is painted. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/?utm_source=lighthouse&utm_medium=lr'>Learn more about the First Contentful Paint metric.</a></p>
+                    </div>
+                </div>
+                <div class='flex bg-white p-4 rounded shadow-md '>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold mb-2 text-blue-600">Largest Contentful Paint</h4>
+                        <p>${met_rics.largest_contentful_paint}</p>
+                    </div>
+                    <div class="flex-1 items-center text-sm  flex">
+                        <p>Largest Contentful Paint marks the time at which the largest text or image is painted. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/?utm_source=lighthouse&utm_medium=lr'>Learn more about the Largest Contentful Paint metric.</a></p>
+                    </div>
+                </div>
+                <div class='flex bg-white p-4 rounded shadow-md'>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold mb-2 text-blue-600">Speed Index</h4>
+                        <p>${met_rics.speed_index}</p>
+                    </div>
+                    <div class="flex-1 items-center text-sm flex">
+                        <p>Speed Index measures how quickly the contents of a page are visibly populated. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/lighthouse-speed-index/?utm_source=lighthouse&utm_medium=lr'>Learn more about the Speed Index metric.</a></p>
+                    </div>
+                </div>
+                <div class='flex bg-white p-4 rounded shadow-md'>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold mb-2 text-blue-600">Time to Interactive</h4>
+                        <p>${met_rics.time_to_interactive}</p>
+                    </div>
+                    <div class="flex-1 items-center text-sm flex">
+                        <p>Time to Interactive measures how long it takes for the page to become fully interactive. <a class='text-blue-500' target=_blank href='https://developer.chrome.com/docs/lighthouse/performance/lighthouse-time-to-interactive/?utm_source=lighthouse&utm_medium=lr'>Learn more about the Time to Interactive metric.</a></p>
+                    </div>
+                </div>
+            `;
+        })
+        .catch(error => {
+            loader.style.display = 'none';
+            console.error('Error fetching analytics data:', error);
+        });
+    };
+
+    // Load data when switching tabs
+    desktopTab.addEventListener('click', function () {
+        desktopContent.style.display = 'block';
+        mobileContent.style.display = 'none';
+        loadAnalytics('desktop');
+    });
+
+    mobileTab.addEventListener('click', function () {
+        mobileContent.style.display = 'block';
+        desktopContent.style.display = 'none';
+        loadAnalytics('mobile');
+    });
+
+    // Load desktop content by default
+    desktopTab.click();
+});
+
+
+
+
+
+
 
 
 
@@ -621,7 +686,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
 
 
 
